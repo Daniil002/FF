@@ -1,0 +1,129 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Первая секция - Ключевые навыки */
+.skillsSection {
+    width: 316px;
+    min-height: 206px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skillsTitle {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 0 16px 0;
+    color: #333;
+}
+
+.skillsInputWrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.skillsInput {
+    flex: 1;
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background-color: #F5F5F5;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+}
+
+.skillsInput::placeholder {
+    color: #999;
+}
+
+.addButton {
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.addButton img {
+    width: 34px;
+    height: 30px;
+}
+
+.skillsTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    padding: 6px 12px;
+    background-color: #F0F0F0;
+    border-radius: 16px;
+    font-size: 12px;
+    color: #666;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.tag:hover {
+    background-color: #E0E0E0;
+}
+
+/* Вторая секция - Выбор города */
+.citySection {
+    width: 317px;
+    height: 84px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.citySelectWrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background-color: #F5F5F5;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.citySelectWrapper:hover {
+    background-color: #EBEBEB;
+}
+
+.locationIcon {
+    width: 10px;
+    height: 12px;
+}
+
+.cityText {
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+}
+
+.arrowIcon {
+    width: 6px;
+    height: 10px;
+}

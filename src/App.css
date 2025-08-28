@@ -1,0 +1,21 @@
+#root {
+  width: 100%;
+}
+
+body {
+  background-color: rgba(246, 246, 247, 1);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+

@@ -1,0 +1,82 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 126px;
+    padding: 50px 0 20px;
+    margin: 26px auto 0;
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    border-bottom: 1px solid rgba(224, 224, 224, 1);
+}
+
+.textSection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.title {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 0;
+    color: #000;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+}
+
+.inputSection {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    width: 349px;
+    height: 40px;
+    padding: 0 16px 0 40px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+}
+
+.input::placeholder {
+    color: #999;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 12px;
+    width: 16px;
+    height: 16px;
+}
+
+.button {
+    width: 93px;
+    height: 42px;
+    background-color: #4263EB;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.button:hover {
+    background-color: #3B5BDB;
+}
