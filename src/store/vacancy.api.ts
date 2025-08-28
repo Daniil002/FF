@@ -11,6 +11,8 @@ export type Vacancy = {
   area?: { id: string; name: string }
   employer?: { id?: string; name?: string }
   salary?: { from?: number; to?: number; currency?: string } | null
+  schedule?: { id: string; name: string } // график работы
+  experience?: { id: string; name: string } // опыт работы
 }
 
 export type VacanciesResponse = {
@@ -43,17 +45,19 @@ export const hhApi = createApi({
     getVacancies: build.query<
     // { ... } — что ты передаёшь в хук (параметры фильтрации).
       VacanciesResponse,
-      { text?: string; industry?: number; professional_role?: number; page?: number; per_page?: number; area?: string }
+      { text?: string; industry?: number; professional_role?: number; page?: number; per_page?: number; area?: string; skill_set?: string[] }
     >({
       query: (params) => {
-        const { area, ...otherParams } = params;
+        const { area, skill_set, ...otherParams } = params;
         const queryParams = {
           ...otherParams,
           professional_role: 96,
           // Если текст пустой, не добавляем параметр text
           ...(params.text === '' ? {} : { text: params.text }),
           // Если город не "all", добавляем параметр area
-          ...(area && area !== 'all' ? { area } : {})
+          ...(area && area !== 'all' ? { area } : {}),
+          // Если есть навыки, добавляем параметр skill_set
+          ...(skill_set && skill_set.length > 0 ? { skill_set: skill_set.join(',') } : {})
         };
         
         return {

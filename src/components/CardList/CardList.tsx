@@ -9,10 +9,12 @@ const CardList = () => {
   const [page, setPage] = useState(1); // номер страницы (HH API начинает с 0!)
   const searchText = useSelector((state: RootState) => state.input.searchText);
   const selectedCity = useSelector((state: RootState) => state.input.selectedCity);
+  const skills = useSelector((state: RootState) => state.input.skills);
 
   const { data, error, isLoading } = useGetVacanciesQuery({
     text: searchText,
     area: selectedCity,
+    skill_set: skills,
     per_page: 10,
     page: page - 1, // hh.ru ожидает нумерацию с 0
   });

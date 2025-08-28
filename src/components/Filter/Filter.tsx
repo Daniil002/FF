@@ -2,12 +2,15 @@ import styles from "./Filter.module.css";
 import buttonIcon from "../../assets/_ActionIcon_.png";
 import { Pill, PillGroup, Select } from '@mantine/core';
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedCity } from "../../store/inputSlice";
+import { setSelectedCity, addSkill, removeSkill } from "../../store/inputSlice";
 import type { RootState } from "../../store/store";
+import { useState } from "react";
 
 const Filter = () => {
     const dispatch = useDispatch();
     const selectedCity = useSelector((state: RootState) => state.input.selectedCity);
+    const skills = useSelector((state: RootState) => state.input.skills);
+    const [newSkill, setNewSkill] = useState('');
 
     const cityOptions = [
         { value: 'all', label: 'Все города' },
@@ -21,6 +24,23 @@ const Filter = () => {
         }
     };
 
+    const handleAddSkill = () => {
+        if (newSkill.trim()) {
+            dispatch(addSkill(newSkill));
+            setNewSkill(''); // очищаем поле ввода
+        }
+    };
+
+    const handleKeyPress = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            handleAddSkill();
+        }
+    };
+
+    const handleRemoveSkill = (skillToRemove: string) => {
+        dispatch(removeSkill(skillToRemove));
+    };
+
     return (
         <div className={styles.container}>
             {/* Первая секция - Ключевые навыки */}
@@ -32,19 +52,28 @@ const Filter = () => {
                         type="text" 
                         placeholder="Навык" 
                         className={styles.skillsInput}
+                        value={newSkill}
+                        onChange={(e) => setNewSkill(e.target.value)}
+                        onKeyPress={handleKeyPress}
                     />
-                    <button className={styles.addButton}>
+                    <button 
+                        className={styles.addButton}
+                        onClick={handleAddSkill}
+                    >
                         <img src={buttonIcon} alt="Добавить" />
                     </button>
                 </div>
 
                 <PillGroup gap={10}>
-                    <Pill onRemove={() => console.log('Пил удалён')} withRemoveButton>Java Script</Pill>
-                    <Pill withRemoveButton>React</Pill>
-                    <Pill withRemoveButton>Redux</Pill>
-                    <Pill withRemoveButton>ReduxToolkit</Pill>
-                    <Pill withRemoveButton>Next.js</Pill>
-                    <Pill withRemoveButton>Vitest</Pill>
+                    {skills.map((skill) => (
+                        <Pill 
+                            key={skill}
+                            onRemove={() => handleRemoveSkill(skill)} 
+                            withRemoveButton
+                        >
+                            {skill}
+                        </Pill>
+                    ))}
                 </PillGroup>
             </div>
             

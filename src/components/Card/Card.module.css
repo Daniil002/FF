@@ -49,6 +49,48 @@
     height: 19px;
     background-color: #4263EB;
     color: white;
+    font-size: 9px;
+    text-align: center;
+    line-height: 14px;
+    border-radius: 4px;
+    padding: 2px 8px;
+    box-sizing: border-box;
+}
+
+.officeTag {
+    display: inline-block;
+    width: 41px;
+    height: 19px;
+    background-color: #0F0F101A;
+    color: #0F0F1080;
+    font-size: 10px;
+    text-align: center;
+    line-height: 14px;
+    border-radius: 4px;
+    padding: 2px 8px;
+    box-sizing: border-box;
+}
+
+.hybridTag {
+    display: inline-block;
+    width: 93px;
+    height: 19px;
+    background-color: #0F0F10;
+    color: #333;
+    font-size: 10px;
+    text-align: center;
+    line-height: 14px;
+    border-radius: 4px;
+    padding: 2px 8px;
+    box-sizing: border-box;
+}
+
+.defaultTag {
+    display: inline-block;
+    width: 93px;
+    height: 19px;
+    background-color: #6C757D;
+    color: white;
     font-size: 10px;
     text-align: center;
     line-height: 14px;
@@ -86,17 +128,23 @@
     background-color: #333;
 }
 
+.viewButton:disabled {
+    background-color: #0F0F10;
+    color: #FFFFFF;
+
+}
+
+
+
 .applyButton {
     width: 136px;
     height: 34px;
-    background-color: #F5F5F5;
+    background-color: #0F0F101A;
     color: #000;
     border: 1px solid #E0E0E0;
     border-radius: 6px;
     font-size: 12px;
     font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
 }
 
 .applyButton:hover {
