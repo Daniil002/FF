@@ -43,18 +43,24 @@ export const hhApi = createApi({
     getVacancies: build.query<
     // { ... } — что ты передаёшь в хук (параметры фильтрации).
       VacanciesResponse,
-      { text?: string; industry?: number; professional_role?: number; page?: number; per_page?: number }
+      { text?: string; industry?: number; professional_role?: number; page?: number; per_page?: number; area?: string }
     >({
-      query: (params) => ({
-        url: 'vacancies',
-        params: {
-          ...params,
+      query: (params) => {
+        const { area, ...otherParams } = params;
+        const queryParams = {
+          ...otherParams,
           professional_role: 96,
           // Если текст пустой, не добавляем параметр text
-          ...(params.text === '' ? {} : { text: params.text })
-          
-        }
-      }),
+          ...(params.text === '' ? {} : { text: params.text }),
+          // Если город не "all", добавляем параметр area
+          ...(area && area !== 'all' ? { area } : {})
+        };
+        
+        return {
+          url: 'vacancies',
+          params: queryParams
+        };
+      },
     }),
   }),
 })

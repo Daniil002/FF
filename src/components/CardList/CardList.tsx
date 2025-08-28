@@ -8,10 +8,11 @@ import type { RootState } from "../../store/store";
 const CardList = () => {
   const [page, setPage] = useState(1); // номер страницы (HH API начинает с 0!)
   const searchText = useSelector((state: RootState) => state.input.searchText);
+  const selectedCity = useSelector((state: RootState) => state.input.selectedCity);
 
   const { data, error, isLoading } = useGetVacanciesQuery({
     text: searchText,
-    area: 1,
+    area: selectedCity,
     per_page: 10,
     page: page - 1, // hh.ru ожидает нумерацию с 0
   });
@@ -27,7 +28,7 @@ const CardList = () => {
       ))}
 
       <PaginationComponent 
-        total={Math.ceil(data.found / 5)} // считаем количество страниц
+        total={Math.ceil(data.found / 10)} // исправляем на 10 элементов на странице
         page={page}
         onChange={setPage}
       />

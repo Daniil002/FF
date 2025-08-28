@@ -1,11 +1,26 @@
 import styles from "./Filter.module.css";
 import buttonIcon from "../../assets/_ActionIcon_.png";
-import locationIcon from "../../assets/citySearchIcon.png"
-import arrowDown from "../../assets/cityIcon.png"
-import { Pill, PillGroup } from '@mantine/core';
-
+import { Pill, PillGroup, Select } from '@mantine/core';
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedCity } from "../../store/inputSlice";
+import type { RootState } from "../../store/store";
 
 const Filter = () => {
+    const dispatch = useDispatch();
+    const selectedCity = useSelector((state: RootState) => state.input.selectedCity);
+
+    const cityOptions = [
+        { value: 'all', label: 'Все города' },
+        { value: '1', label: 'Москва' },
+        { value: '2', label: 'Санкт-Петербург' }
+    ];
+
+    const handleCityChange = (value: string | null) => {
+        if (value) {
+            dispatch(setSelectedCity(value));
+        }
+    };
+
     return (
         <div className={styles.container}>
             {/* Первая секция - Ключевые навыки */}
@@ -24,7 +39,6 @@ const Filter = () => {
                 </div>
 
                 <PillGroup gap={10}>
-
                     <Pill onRemove={() => console.log('Пил удалён')} withRemoveButton>Java Script</Pill>
                     <Pill withRemoveButton>React</Pill>
                     <Pill withRemoveButton>Redux</Pill>
@@ -32,24 +46,28 @@ const Filter = () => {
                     <Pill withRemoveButton>Next.js</Pill>
                     <Pill withRemoveButton>Vitest</Pill>
                 </PillGroup>
-                
-                
-                {/* <div className={styles.skillsTags}>
-                    <span className={styles.tag}>JavaScript</span>
-                    <span className={styles.tag}>React</span>
-                    <span className={styles.tag}>Redux</span>
-                    <span className={styles.tag}>TypeScript</span>
-                    <span className={styles.tag}>HTML/CSS</span>
-                </div> */}
             </div>
             
             {/* Вторая секция - Выбор города */}
             <div className={styles.citySection}>
-                <div className={styles.citySelectWrapper}>
-                    <img src={locationIcon} alt="Местоположение" className={styles.locationIcon} />
-                    <span className={styles.cityText}>Все города</span>
-                    <img src={arrowDown} alt="Выбрать" className={styles.arrowIcon} />
-                </div>
+                <Select
+                    placeholder="Выберите город"
+                    data={cityOptions}
+                    value={selectedCity}
+                    onChange={handleCityChange}
+                    className={styles.citySelect}
+                    styles={{
+                        input: {
+                            border: '1px solid #D5D6DC',
+                            borderRadius: '8px',
+                            padding: '8px 12px',
+                            fontSize: '14px',
+                            '&:focus': {
+                                borderColor: '#5E96FC'
+                            }
+                        }
+                    }}
+                />
             </div>
         </div>
     )
