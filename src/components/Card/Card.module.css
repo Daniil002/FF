@@ -4,12 +4,13 @@
     background-color: white;
     border-radius: 12px;
     padding: 24px;
+    margin-bottom: 20px;
     box-sizing: border-box;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     font-family: 'Open Sans', sans-serif;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 11px;
 }
 
 .title {

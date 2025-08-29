@@ -23,10 +23,8 @@ const Card = ({ vacancy }: { vacancy: Vacancy }) => {
 
   return (
     <div className={styles.card}>
-      {/* Заголовок вакансии */}
       <h2 className={styles.title}>{vacancy.name}</h2>
 
-      {/* Зарплата и опыт */}
       <div className={styles.salaryRow}>
         <span className={styles.salary}>
           {vacancy.salary
@@ -38,18 +36,16 @@ const Card = ({ vacancy }: { vacancy: Vacancy }) => {
         <span className={styles.experience}>{vacancy.experience?.name}</span>
       </div>
 
-      {/* Название компании */}
       <p className={styles.company}>{vacancy.employer?.name}</p>
 
-      {/* Тег типа работы */}
       {workTypeTag && (
         <span className={workTypeTag.className}>{workTypeTag.text}</span>
       )}
 
-      {/* Локация */}
+
       <p className={styles.location}>{vacancy.area?.name}</p>
 
-      {/* Кнопки */}
+    
       <div className={styles.buttonsRow}>
         <button className={styles.viewButton} disabled>
           Смотреть вакансию

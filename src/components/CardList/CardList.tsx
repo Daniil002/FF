@@ -12,6 +12,7 @@ const CardList = () => {
   const skills = useSelector((state: RootState) => state.input.skills);
 
   const { data, error, isLoading } = useGetVacanciesQuery({
+    // хук следит за изменением параметров, если что-то поменялось , отправляем запрос на апишку
     text: searchText,
     area: selectedCity,
     skill_set: skills,
@@ -30,7 +31,7 @@ const CardList = () => {
       ))}
 
       <PaginationComponent 
-        total={Math.ceil(data.found / 10)} // исправляем на 10 элементов на странице
+        total={Math.ceil(data.found / 10)} 
         page={page}
         onChange={setPage}
       />

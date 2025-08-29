@@ -43,7 +43,8 @@ export const hhApi = createApi({
     // эндпоинт для поиска вакансий
     // VacanciesResponse - что придет в дата
     getVacancies: build.query<
-    // { ... } — что ты передаёшь в хук (параметры фильтрации).
+    // { ... } — что передаем в хук параметры фильтрации
+      // тип ответа и вторая строка тип параметров , которые я передаю в хук
       VacanciesResponse,
       { text?: string; industry?: number; professional_role?: number; page?: number; per_page?: number; area?: string; skill_set?: string[] }
     >({
@@ -52,11 +53,8 @@ export const hhApi = createApi({
         const queryParams = {
           ...otherParams,
           professional_role: 96,
-          // Если текст пустой, не добавляем параметр text
           ...(params.text === '' ? {} : { text: params.text }),
-          // Если город не "all", добавляем параметр area
           ...(area && area !== 'all' ? { area } : {}),
-          // Если есть навыки, добавляем параметр skill_set
           ...(skill_set && skill_set.length > 0 ? { skill_set: skill_set.join(',') } : {})
         };
         
