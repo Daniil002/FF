@@ -28,6 +28,8 @@
 .header__brand {
     font-weight: bold;
     font-size: 18px;
+    text-decoration: none;
+    color: black;
 }
 
 /* Центральная часть */

@@ -1,8 +1,9 @@
 import styles from "./Card.module.css";
 import type { Vacancy } from "../../store/vacancy.api";
-
+import { useNavigate } from "react-router";
 // принимаем проп vacancy с типизацией
 const Card = ({ vacancy }: { vacancy: Vacancy }) => {
+  const navigate = useNavigate();
   // Функция для определения типа работы и возврата соответствующего тега
   const getWorkTypeTag = (schedule?: { id: string; name: string }) => {
     if (!schedule) return null;
@@ -20,6 +21,17 @@ const Card = ({ vacancy }: { vacancy: Vacancy }) => {
   };
 
   const workTypeTag = getWorkTypeTag(vacancy.schedule);
+
+  const handleViewButtonClick = () => {
+    navigate(`/vacancies/${vacancy.id}`, { 
+      state: { 
+        from: "PostsPage",
+        vacancyData: vacancy
+      } 
+    });
+  };
+
+  
 
   return (
     <div className={styles.card}>
@@ -47,7 +59,7 @@ const Card = ({ vacancy }: { vacancy: Vacancy }) => {
 
     
       <div className={styles.buttonsRow}>
-        <button className={styles.viewButton} disabled>
+        <button className={styles.viewButton} onClick={handleViewButtonClick}>
           Смотреть вакансию
         </button>
 

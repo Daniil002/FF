@@ -2,7 +2,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // fetchBaseQuery надсройка над fetch
 
-// Типы данных ответа HH (упрощённо)
+// Типы данных ответа HH 
 export type Vacancy = {
   // описывает одну вакансию 
   id: string
@@ -13,6 +13,8 @@ export type Vacancy = {
   salary?: { from?: number; to?: number; currency?: string } | null
   schedule?: { id: string; name: string } // график работы
   experience?: { id: string; name: string } // опыт работы
+  description?: string // Добавляем описание
+
 }
 
 export type VacanciesResponse = {

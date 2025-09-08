@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 
 const CardList = () => {
-  const [page, setPage] = useState(1); // номер страницы (HH API начинает с 0!)
+  const [page, setPage] = useState(1); 
   const searchText = useSelector((state: RootState) => state.input.searchText);
   const selectedCity = useSelector((state: RootState) => state.input.selectedCity);
   const skills = useSelector((state: RootState) => state.input.skills);
@@ -17,7 +17,7 @@ const CardList = () => {
     area: selectedCity,
     skill_set: skills,
     per_page: 10,
-    page: page - 1, // hh.ru ожидает нумерацию с 0
+    page: page - 1, // апи ожидает нумерацию с 0
   });
 
   if (isLoading) return <p>Загрузка...</p>;
