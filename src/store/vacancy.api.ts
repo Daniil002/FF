@@ -7,13 +7,14 @@ export type Vacancy = {
   // описывает одну вакансию 
   id: string
   name: string
-  alternate_url: string
+  alternate_url: string // добавлено: ссылка на вакансию (используем как url)
   area?: { id: string; name: string }
   employer?: { id?: string; name?: string }
   salary?: { from?: number; to?: number; currency?: string } | null
   schedule?: { id: string; name: string } // график работы
   experience?: { id: string; name: string } // опыт работы
-  description?: string // Добавляем описание
+  description?: string // добавлено: описание (если вернётся)
+  snippet?: { requirement?: string; responsibility?: string } // добавлено: краткое описание из ответа HH
 
 }
 
@@ -66,8 +67,15 @@ export const hhApi = createApi({
         };
       },
     }),
+    // добавлено: эндпоинт для получения одной вакансии по id (для страницы /vacancies/:id)
+    getVacancyById: build.query<Vacancy, string>({
+      query: (id) => ({
+        url: `vacancies/${id}`,
+      }),
+    }),
   }),
 })
 
 // Автогенерация хуков
-export const { useGetVacanciesQuery } = hhApi
+// добавлено: хук для получения одной вакансии по id
+export const { useGetVacanciesQuery, useGetVacancyByIdQuery } = hhApi

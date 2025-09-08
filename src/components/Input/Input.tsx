@@ -1,16 +1,21 @@
 import styles from "./Input.module.css";
 import searchIcon from "../../assets/icon-search.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSearchText } from "../../store/inputSlice";
+import { useSearchParams } from "react-router"; // добавлено: синхронизация с URL
 
 const Input = () => {
   const [lockalValue, setLocalValue] = useState('');
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams(); // добавлено
 
   const handleSearch = () => {
     dispatch(setSearchText(lockalValue))
-
+    // добавлено: запись в URL параметра q
+    const next = new URLSearchParams(searchParams);
+    if (lockalValue) next.set('q', lockalValue); else next.delete('q');
+    setSearchParams(next, { replace: true });
   }
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -19,6 +24,12 @@ const Input = () => {
     }
   };
 
+  // добавлено: инициализация поля из URL при монтировании и при изменении searchParams
+  useEffect(() => {
+    const q = searchParams.get('q') || '';
+    setLocalValue(q);
+    dispatch(setSearchText(q));
+  }, [searchParams, dispatch]);
   
   return (
     <div className={styles.container}>

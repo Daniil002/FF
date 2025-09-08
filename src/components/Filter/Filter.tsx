@@ -4,13 +4,15 @@ import { Pill, PillGroup, Select } from '@mantine/core';
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedCity, addSkill, removeSkill } from "../../store/inputSlice";
 import type { RootState } from "../../store/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router"; // добавлено: синхронизация с URL
 
 const Filter = () => {
     const dispatch = useDispatch();
     const selectedCity = useSelector((state: RootState) => state.input.selectedCity);
     const skills = useSelector((state: RootState) => state.input.skills);
     const [newSkill, setNewSkill] = useState('');
+    const [searchParams, setSearchParams] = useSearchParams(); // добавлено
 
     const cityOptions = [
         { value: 'all', label: 'Все города' },
@@ -21,13 +23,23 @@ const Filter = () => {
     const handleCityChange = (value: string | null) => {
         if (value) {
             dispatch(setSelectedCity(value));
+            // добавлено: запись города в URL
+            const next = new URLSearchParams(searchParams);
+            if (value && value !== 'all') next.set('city', value); else next.delete('city');
+            setSearchParams(next, { replace: true });
         }
     };
 
     const handleAddSkill = () => {
         if (newSkill.trim()) {
-            dispatch(addSkill(newSkill));
-            setNewSkill(''); // очищаем поле ввода
+            const skill = newSkill.trim();
+            dispatch(addSkill(skill));
+            // добавлено: запись массива навыков в URL
+            const next = new URLSearchParams(searchParams);
+            const nextSkills = Array.from(new Set([...(skills || []), skill])).sort();
+            if (nextSkills.length) next.set('skills', nextSkills.join(',')); else next.delete('skills');
+            setSearchParams(next, { replace: true });
+            setNewSkill('');
         }
     };
 
@@ -39,7 +51,29 @@ const Filter = () => {
 
     const handleRemoveSkill = (skillToRemove: string) => {
         dispatch(removeSkill(skillToRemove));
+        // добавлено: обновление URL при удалении навыка
+        const next = new URLSearchParams(searchParams);
+        const nextSkills = skills.filter((s) => s !== skillToRemove).sort();
+        if (nextSkills.length) next.set('skills', nextSkills.join(',')); else next.delete('skills');
+        setSearchParams(next, { replace: true });
     };
+
+    // добавлено: инициализация значений из URL при монтировании и изменении searchParams
+    useEffect(() => {
+        const city = searchParams.get('city') || 'all';
+        const rawSkills = searchParams.get('skills') || '';
+        // не модифицируем существующие навыки, только устанавливаем отсутствующие
+        if (city !== selectedCity) {
+            dispatch(setSelectedCity(city));
+        }
+        if (rawSkills) {
+            const parsed = rawSkills.split(',').filter(Boolean);
+            // добавляем недостающие навыки
+            parsed.forEach((s) => {
+                if (!skills.includes(s)) dispatch(addSkill(s));
+            });
+        }
+    }, [searchParams]);
 
     return (
         <div className={styles.container}>

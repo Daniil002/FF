@@ -3,7 +3,7 @@ import Header from './components/Header/Header'
 import Input from './components/Input/Input'
 import Filter from './components/Filter/Filter'
 import CardList from './components/CardList/CardList'
-import { Routes, Route } from 'react-router';
+import { Routes, Route, Navigate } from 'react-router';
 import Vacancy from './components/Vacancy/Vacancy'
 
 function App() {
@@ -11,7 +11,8 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={
+        {/* добавлено: перенесли страницу списка на /vacancies согласно заданию */}
+        <Route path="/vacancies" element={
           <>
             <Input />
             <div className="main-content">
@@ -20,6 +21,8 @@ function App() {
             </div>
           </>
         } />
+        {/* добавлено: редирект с корня на /vacancies */}
+        <Route path="/" element={<Navigate to="/vacancies" replace />} />
         <Route path='/vacancies/:id' element={<Vacancy />} />
       </Routes>
     </>
