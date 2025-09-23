@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     searchText: '',
-    selectedCity: 'all', // 'all', '1' (Москва), '2' (Санкт-Петербург)
-    skills: ['TypeScript', 'React', 'Redux'] // начальные навыки
+    selectedCity: 'all', 
+    skills: ['TypeScript', 'React', 'Redux'] 
 }
 
 export const inputSlice = createSlice({
@@ -27,6 +27,6 @@ export const inputSlice = createSlice({
         }
     }
 })
-
+// автоматически создает action creators
 export const { setSearchText, setSelectedCity, addSkill, removeSkill } = inputSlice.actions;
 export default inputSlice.reducer;

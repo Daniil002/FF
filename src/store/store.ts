@@ -1,11 +1,11 @@
-// src/store.ts
 import { configureStore } from '@reduxjs/toolkit'
 import { hhApi } from './vacancy.api'
 import inputReducer from './inputSlice'
+
 export const store = configureStore({
   reducer: {
     [hhApi.reducerPath]: hhApi.reducer,
-    input: inputReducer, // добавьте этот редюсер
+    input: inputReducer, 
 
   },
   middleware: (getDefaultMiddleware) =>

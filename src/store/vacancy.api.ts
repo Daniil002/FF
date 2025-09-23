@@ -1,25 +1,21 @@
-// src/services/hhApi.ts
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-// fetchBaseQuery надсройка над fetch
 
-// Типы данных ответа HH 
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+
 export type Vacancy = {
-  // описывает одну вакансию 
   id: string
   name: string
-  alternate_url: string // добавлено: ссылка на вакансию (используем как url)
+  alternate_url: string
   area?: { id: string; name: string }
   employer?: { id?: string; name?: string }
   salary?: { from?: number; to?: number; currency?: string } | null
-  schedule?: { id: string; name: string } // график работы
-  experience?: { id: string; name: string } // опыт работы
-  description?: string // добавлено: описание (если вернётся)
-  snippet?: { requirement?: string; responsibility?: string } // добавлено: краткое описание из ответа HH
+  schedule?: { id: string; name: string } 
+  experience?: { id: string; name: string } 
+  description?: string 
+  snippet?: { requirement?: string; responsibility?: string } 
 
 }
 
 export type VacanciesResponse = {
-  // то что мы получаем после ответа
   items: Vacancy[]
   found: number
   pages: number
@@ -27,7 +23,6 @@ export type VacanciesResponse = {
   per_page: number
 }
 
-// Создаём API  reducerPath - имя среза состояния в редукс
 export const hhApi = createApi({
   reducerPath: 'hhApi',
   // baseQuery - задает базовый способ выполнения запросов
