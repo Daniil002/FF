@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 20px;
+}
+
+.content {
+    height: 500px;
+    width: 607px;
+    background-color: white;
+    margin-top: 72px;
+    border-radius: 12px;
+    padding: 34px;
+}
+
+/* Добавьте в ваш CSS */
+.titleRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 34px;
+    margin: 0; /* убираем стандартные отступы */
+}
+
+.button {
+    background-color: rgba(66, 99, 235, 1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap; 
+
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
