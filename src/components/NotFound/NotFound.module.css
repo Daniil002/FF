@@ -15,7 +15,6 @@
     padding: 34px;
 }
 
-/* Добавьте в ваш CSS */
 .titleRow {
     display: flex;
     justify-content: space-between;
@@ -25,7 +24,7 @@
 
 .title {
     font-size: 34px;
-    margin: 0; /* убираем стандартные отступы */
+    margin: 0; 
 }
 
 .button {
