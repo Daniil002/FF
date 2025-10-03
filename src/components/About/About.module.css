@@ -1,0 +1,62 @@
+.about {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 60px;
+}
+
+.about__title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.about__content {
+  line-height: 1.6;
+}
+
+.about__text {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.about__skills {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+
+}
+
+.about__skills h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.about__skills ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about__skills li {
+  padding: 8px 0;
+  color: #555;
+  font-size: 1rem;
+  position: relative;
+  padding-left: 20px;
+}
+
+.about__skills li::before {
+  content: "-";
+  color: rgb(70, 144, 228);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+

@@ -63,3 +63,28 @@
 .header__about {
     font-size: 14px;
 }
+
+.header__about {
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.header__vacancy {
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.header__vacancy:hover,
+.header__about:hover {
+    color: #4263EB;
+}
+
+.header__vacancy.active,
+.header__about.active {
+    color: #4263EB;
+    font-weight: bold;
+}

@@ -17,5 +17,6 @@ body {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: 80px; /* Отступ для фиксированного header (уменьшен) */
 }
 
